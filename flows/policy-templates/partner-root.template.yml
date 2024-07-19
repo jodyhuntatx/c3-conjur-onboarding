@@ -1,0 +1,20 @@
+- !host
+  id: {{PARTNER_NAME}}_svc
+  annotations:
+    authn/api-key: true
+
+# Partner policy branch
+- !policy
+  id: {{PARTNER_NAME}}
+  owner: !host {{PARTNER_NAME}}_svc
+  body:
+    - !group {{PARTNER_NAME}}-users
+    - !group {{PARTNER_NAME}}-workloads
+
+# Pre-create safe consumers group and add user group to it
+- !group vault/Partner-{{PARTNER_NAME}}/delegation/consumers
+- !grant
+  role: !group vault/Partner-{{PARTNER_NAME}}/delegation/consumers 
+  members:
+  - !group {{PARTNER_NAME}}/{{PARTNER_NAME}}-users  
+  - !group {{PARTNER_NAME}}/{{PARTNER_NAME}}-workloads

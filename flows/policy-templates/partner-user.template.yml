@@ -1,0 +1,3 @@
+- !grant
+  role: !group {{PARTNER_NAME}}-users
+  member: !user /{{ISPSS_PARTNER_USERNAME}}

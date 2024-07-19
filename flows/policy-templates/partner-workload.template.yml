@@ -1,0 +1,16 @@
+# create workload identity
+- !host
+  id: {{PARTNER_NAME}}-workload
+  annotations:
+    authn/api-key: true
+
+# grant workload the role for secrets access
+- !grant
+  role: !group {{PARTNER_NAME}}-workloads
+  member: !host {{PARTNER_NAME}}-workload
+
+# permit users to see and update (rotate API key) the workload
+- !permit
+  role: !group {{PARTNER_NAME}}-users
+  privileges: [ read, execute, update ]
+  resource: !host {{PARTNER_NAME}}-workload  
