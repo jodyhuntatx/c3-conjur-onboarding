@@ -1,0 +1,8 @@
+{
+"partnerName": "string",
+"partnerUsers": "string",
+"partnerWorkloads": "string",
+"partnerSafe": "string",
+"partnerUsername": "string",
+"partnerWorkload": "string"
+}

@@ -2,7 +2,7 @@
 # Provisioned by 1-create-partner-branch.sh
 export PARTNER_NAME="JodyTest"
 export PARTNER_USERS=$PARTNER_NAME-users
-export PARTNER_WORKLOADS={{PARTNER_NAME}}-workloads
+export PARTNER_WORKLOADS=$PARTNER_NAME-workloads
 export PARTNER_SAFE=Partner-$PARTNER_NAME
 
 # Identity user - for UI access
