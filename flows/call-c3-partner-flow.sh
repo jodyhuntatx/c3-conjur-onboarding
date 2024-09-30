@@ -1,31 +1,38 @@
 #!/bin/bash
 
-export FLOWS_TENANT=aax4917.flows.cyberark.cloud
-export FLOW_NAME=Conjur-Onboarding
+echo
+echo
+echo "This script calls a Flow to onboard a Partner and Partner user"
+echo "  to Conjur Cloud."
+echo
+echo
 
-source ../partner-vars.sh
+export FLOWS_TENANT=aax4917.flows.cyberark.cloud
+export FLOW_NAME=BizDevTech-ProcessConjurCloud-Jody
+export OAUTH2_USER=restapiuser@c3.demo
+
+read -sp "Enter $OAUTH2_USER password:" OAUTH2_PWD
+echo
+read -p "Enter partner name: " PARTNER_NAME
+read -p "Enter partner username: " PARTNER_USERNAME
 
 echo
 echo "Running Flow with these variables:"
+echo " OAUTH2_USER: $OAUTH2_USER"
+echo " OAUTH2_PWD: $OAUTH2_PWD"
 echo " PARTNER_NAME: $PARTNER_NAME"
-echo " PARTNER_USERS: $PARTNER_USERS"
-echo " PARTNER_WORKLOADS: $PARTNER_WORKLOADS"
-echo " PARTNER_SAFE: $PARTNER_SAFE"
 echo " PARTNER_USERNAME: $PARTNER_USERNAME"
-echo " PARTNER_WORKLOAD: $PARTNER_WORKLOAD"
 echo
 
 set -x
 curl -kv -X POST						\
 	-H 'Content-Type: application/json' 			\
 	--data "{						\
+		\"oauth2User\": \"$OAUTH2_USER\",		\
+		\"oauth2Pwd\": \"$OAUTH2_PWD\",			\
 		\"partnerName\": \"$PARTNER_NAME\",		\
-		\"partnerUsers\": \"$PARTNER_USERS\",		\
-		\"partnerWorkloads\": \"$PARTNER_WORKLOADS\",	\
-		\"partnerSafe\": \"$PARTNER_SAFE\",		\
-		\"partnerUsername\": \"$PARTNER_USERNAME\",	\
-		\"partnerWorkload\": \"$PARTNER_WORKLOAD\"	\
+		\"partnerUsername\": \"$PARTNER_USERNAME\"	\
 	}"							\
-	https://$FLOWS_TENANT/api/v2/$FLOW_NAME/play
+	"https://$FLOWS_TENANT/api/v2/$FLOW_NAME/play"
 echo
 echo

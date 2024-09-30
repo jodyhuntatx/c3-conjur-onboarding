@@ -1,8 +1,6 @@
 {
+"oauth2user": "string",
+"oauth2pwd": "string",
 "partnerName": "string",
-"partnerUsers": "string",
-"partnerWorkloads": "string",
-"partnerSafe": "string",
-"partnerUsername": "string",
-"partnerWorkload": "string"
+"partnerUsername": "string"
 }

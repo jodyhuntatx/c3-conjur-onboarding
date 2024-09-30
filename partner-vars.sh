@@ -1,6 +1,12 @@
+# privileged admin service account
+export OAUTH2_USER=jodybot
+export OAUTH2_PWD=$(keyring get cybrid jodybotpwd)
+
 # for setting up root policy
 # Provisioned by 1-create-partner-branch.sh
 export PARTNER_NAME="JodyTest"
+
+# used by bash scripts - not Flow
 export PARTNER_USERS=$PARTNER_NAME-users
 export PARTNER_WORKLOADS=$PARTNER_NAME-workloads
 export PARTNER_SAFE=Partner-$PARTNER_NAME
